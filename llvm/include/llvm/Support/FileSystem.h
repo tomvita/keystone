@@ -26,7 +26,7 @@
 
 #ifndef LLVM_SUPPORT_FILESYSTEM_H
 #define LLVM_SUPPORT_FILESYSTEM_H
-
+#define LLVM_ON_UNIX1
 #include "llvm/ADT/IntrusiveRefCntPtr.h"
 #include "llvm/ADT/SmallString.h"
 #include "llvm/ADT/Twine.h"
@@ -136,7 +136,7 @@ public:
 ///               a platform-specific member to store the result.
 class file_status
 {
-  #if defined(LLVM_ON_UNIX)
+  #if defined(LLVM_ON_UNIX1)
   dev_t fs_st_dev;
   ino_t fs_st_ino;
   time_t fs_st_mtime;
@@ -157,7 +157,7 @@ class file_status
   perms Perms;
 
 public:
-  #if defined(LLVM_ON_UNIX)
+  #if defined(LLVM_ON_UNIX1)
     file_status() : fs_st_dev(0), fs_st_ino(0), fs_st_mtime(0),
         fs_st_uid(0), fs_st_gid(0), fs_st_size(0),
         Type(file_type::status_error), Perms(perms_not_known) {}
@@ -197,7 +197,7 @@ public:
   perms permissions() const { return Perms; }
   UniqueID getUniqueID() const;
 
-  #if defined(LLVM_ON_UNIX)
+  #if defined(LLVM_ON_UNIX1)
   uint32_t getUser() const { return fs_st_uid; }
   uint32_t getGroup() const { return fs_st_gid; }
   uint64_t getSize() const { return fs_st_size; }
