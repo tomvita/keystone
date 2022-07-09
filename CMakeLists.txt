@@ -1,5 +1,12 @@
 # Keystone Assembler Engine (www.keystone-engine.org)
 # By Nguyen Anh Quynh, 2016
+set(CMAKE_C_COMPILER "${DEVKITA64}/bin/aarch64-none-elf-gcc.exe")
+set(CMAKE_CXX_COMPILER "${DEVKITA64}/bin/aarch64-none-elf-g++.exe")
+set(CMAKE_LINKER "${DEVKITA64}/bin/aarch64-none-elf-ld.exe")
+set(CMAKE_AR "${DEVKITA64}/bin/aarch64-none-elf-gcc-ar.exe" CACHE STRING "")
+set(CMAKE_AS "${DEVKITA64}/bin/aarch64-none-elf-as.exe" CACHE STRING "")
+set(CMAKE_NM "${DEVKITA64}/bin/aarch64-none-elf-gcc-nm.exe" CACHE STRING "")
+set(CMAKE_RANLIB "${DEVKITA64}/bin/aarch64-none-elf-gcc-ranlib.exe" CACHE STRING "")
 
 cmake_minimum_required(VERSION 2.8.7)
 project(keystone)
