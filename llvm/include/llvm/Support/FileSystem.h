@@ -196,7 +196,7 @@ public:
   file_type type() const { return Type; }
   perms permissions() const { return Perms; }
   UniqueID getUniqueID() const;
-
+  uint64_t getSize() const { return 0; };
   #if defined(LLVM_ON_UNIX)
   uint32_t getUser() const { return fs_st_uid; }
   uint32_t getGroup() const { return fs_st_gid; }
@@ -654,19 +654,19 @@ public:
   ///   ownership if closefd is true. It must have been opended in the correct
   ///   mode.
   mapped_file_region(int fd, mapmode mode, uint64_t length, uint64_t offset,
-                     std::error_code &ec);
+                     std::error_code &ec){};
 
-  ~mapped_file_region();
+  ~mapped_file_region(){};
 
   uint64_t size() const;
   char *data() const;
 
   /// Get a const view of the data. Modifying this memory has undefined
   /// behavior.
-  const char *const_data() const;
+  const char *const_data() const { return "null";};
 
   /// \returns The minimum alignment offset must be.
-  static int alignment();
+  static int alignment(){ return 0;};
 };
 
 /// Return the path to the main executable, given the value of argv[0] from

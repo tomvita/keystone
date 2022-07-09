@@ -1148,13 +1148,33 @@ namespace path {
 
 bool user_cache_directory(SmallVectorImpl<char> &Result, const Twine &Path1,
                           const Twine &Path2, const Twine &Path3) {
-  if (getUserCacheDir(Result)) {
-    append(Result, Path1, Path2, Path3);
-    return true;
-  }
+  // if (getUserCacheDir(Result)) {
+  //   append(Result, Path1, Path2, Path3);
+  //   return true;
+  // }
   return false;
 }
 
 } // end namespace path
+namespace fs {
+  std::error_code status(int FD, file_status &Result)
+  {
+    // HANDLE FileHandle = reinterpret_cast<HANDLE>(_get_osfhandle(FD));
+    // return getStatus(FileHandle, Result);
+    return std::error_code();
+  }
+  std::error_code openFileForRead(const Twine &Name, int &ResultFD)
+  {
+    return std::error_code();
+  };
+  std::error_code openFileForWrite(const Twine &Name, int &ResultFD,
+                                   sys::fs::OpenFlags Flags, unsigned Mode)
+  {
+    return std::error_code();
+  }
+  std::error_code current_path(SmallVectorImpl<char> &result) {
+    return std::error_code();
+  }
+}
 } // end namsspace sys
 } // end namespace llvm_ks
