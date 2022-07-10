@@ -1,0 +1,24 @@
+{
+    "configurations": [
+        {
+            "name": "DKP Aarch64",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "c:/devkitPro/**",
+                "c:/GitHub/capstone/**",
+                "c:/GitHub/keystone/**"
+            ],
+            "defines": [
+                "DEBUG",
+                "SWITCH",
+                "__SWITCH__"
+            ],
+            "compilerPath": "c:/devkitPro/devkitA64/bin/aarch64-none-elf-g++",
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "gcc-x64",
+            "compilerArgs": []
+        }
+    ],
+    "version": 4
+}
