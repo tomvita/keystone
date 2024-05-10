@@ -39,9 +39,8 @@ include $(DEVKITPRO)/libnx/switch_rules
 #---------------------------------------------------------------------------------
 TARGET		:=	libkeystone
 BUILD		:=	build
-SOURCES		:=	llvm/keystone llvm/lib/Support llvm/lib/Target/AArch64/TargetInfo llvm/lib/Target/AArch64/MCTargetDesc llvm/lib/Target/AArch64/AsmParser llvm/lib/Target/AArch64/Utils llvm/lib/MC/MCParser llvm/lib/MC 
-
-INCLUDES	:=	include llvm/include llvm/lib/Target/AArch64
+SOURCES		:=	llvm/keystone llvm/lib/Support llvm/lib/Target/AArch64/TargetInfo llvm/lib/Target/AArch64/MCTargetDesc llvm/lib/Target/AArch64/AsmParser llvm/lib/Target/AArch64/Utils llvm/lib/MC/MCParser llvm/lib/MC llvm/lib/Target/ARM/TargetInfo llvm/lib/Target/ARM/MCTargetDesc llvm/lib/Target/ARM/AsmParser 
+INCLUDES	:=	include llvm/include llvm/lib/Target/AArch64 llvm/lib/Target/ARM
 
 
 #---------------------------------------------------------------------------------

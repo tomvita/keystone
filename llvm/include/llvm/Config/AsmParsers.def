@@ -25,6 +25,6 @@
 #endif
 
 LLVM_ASM_PARSER(AArch64)
-
+LLVM_ASM_PARSER(ARM)
 
 #undef LLVM_ASM_PARSER

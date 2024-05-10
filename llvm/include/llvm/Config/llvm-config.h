@@ -36,6 +36,7 @@
 /* Define if threads enabled */
 #define LLVM_ENABLE_THREADS 1
 #define LLVM_ENABLE_ARCH_AArch64 1
+#define LLVM_ENABLE_ARCH_ARM 1
 /* Installation directory for config files */
 /* #undef LLVM_ETCDIR */
 
