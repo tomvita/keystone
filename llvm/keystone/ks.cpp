@@ -14,8 +14,7 @@
 #include "llvm/MC/MCCodeEmitter.h"
 
 // FIXME: setup this with CMake
-#define LLVM_ENABLE_ARCH_EVM
-#include "EVMMapping.h"
+// EVM support pruned
 
 // DEBUG
 //#include <iostream>
@@ -176,9 +175,7 @@ bool ks_arch_supported(ks_arch arch)
 #ifdef LLVM_ENABLE_ARCH_SystemZ
         case KS_ARCH_SYSTEMZ:   return true;
 #endif
-#ifdef LLVM_ENABLE_ARCH_EVM
-        case KS_ARCH_EVM:   return true;
-#endif
+// EVM pruned
         /* Invalid or disabled arch */
         default:            return false;
     }
@@ -471,12 +468,7 @@ ks_err ks_open(ks_arch arch, int mode, ks_engine **result)
                 break;
             }
 #endif
-#ifdef LLVM_ENABLE_ARCH_EVM
-            case KS_ARCH_EVM: {
-                *result = ks;
-                return KS_ERR_OK;
-            }
-#endif
+// EVM pruned
         }
 
         if (TripleName.empty()) {
@@ -499,11 +491,7 @@ ks_err ks_close(ks_engine *ks)
     if (!ks)
         return KS_ERR_HANDLE;
 
-    if (ks->arch == KS_ARCH_EVM) {
-        // handle EVM differently
-        delete ks;
-        return KS_ERR_OK;
-    }
+// EVM pruned
 
     // LLVM-based architectures
     delete ks->STI;
@@ -582,21 +570,7 @@ int ks_asm(ks_engine *ks,
     SmallString<1024> Msg;
     raw_svector_ostream OS(Msg);
 
-    if (ks->arch == KS_ARCH_EVM) {
-        // handle EVM differently
-        unsigned short opcode = EVM_opcode(assembly);
-        if (opcode == (unsigned short)-1) {
-            // invalid instruction
-            return -1;
-        }
-
-        *insn_size = 1;
-        *stat_count = 1;
-        encoding = (unsigned char *)malloc(*insn_size);
-        encoding[0] = opcode;
-        *insn = encoding;
-        return 0;
-    }
+// EVM pruned
 
     *insn = NULL;
     *insn_size = 0;

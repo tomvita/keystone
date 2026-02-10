@@ -49,12 +49,12 @@ INCLUDES	:=	include llvm/include llvm/lib/Target/AArch64
 #---------------------------------------------------------------------------------
 ARCH	:=	-march=armv8-a+crc+crypto -mtune=cortex-a57 -mtp=soft -fPIE
 
-CFLAGS	:=	-g -Wall -O2 -ffunction-sections \
+CFLAGS	:=	-Wall -Os -ffunction-sections -flto -fno-unwind-tables -fno-asynchronous-unwind-tables \
 			$(ARCH) $(DEFINES)
 
 CFLAGS	+=	$(INCLUDE) -D__SWITCH__
 
-CXXFLAGS	:= $(CFLAGS) -std=gnu++23 -fno-exceptions -fno-rtti
+CXXFLAGS	:= $(CFLAGS) -std=gnu++17 -fno-exceptions -fno-rtti -flto
 
 ASFLAGS	:=	-g $(ARCH)
 LDFLAGS	=	-specs=$(DEVKITPRO)/libnx/switch.specs -g $(ARCH) -Wl,-Map,$(notdir $*.map)
@@ -125,7 +125,7 @@ release:
 
 lib/$(TARGET).a : lib release $(SOURCES) $(INCLUDES)
 	@$(MAKE) BUILD=release OUTPUT=$(CURDIR)/$@ \
-	BUILD_CFLAGS="-DNDEBUG=1 -O2" \
+	BUILD_CFLAGS="-DNDEBUG=1 -Os -flto" \
 	DEPSDIR=$(CURDIR)/release \
 	--no-print-directory -C release \
 	-f $(CURDIR)/Makefile
